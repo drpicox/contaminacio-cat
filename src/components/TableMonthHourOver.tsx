@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 import { useTypedSelector } from "../store/hooks";
 import { getTable } from "../store/table/selectors";
 import { DerivedTable } from "../store/table/types";
-import { NO2_SCALE } from "./colorScale";
+import { SCALES } from "./colorScale";
 import { TableMonthHour } from "./TableMonthHour";
 
 export const getOverTable = createSelector(
@@ -23,5 +23,5 @@ export const getOverTable = createSelector(
 export function TableMonthHourOver({ max }: any) {
   const table = useTypedSelector((s) => getOverTable(s, { max }));
 
-  return <TableMonthHour table={table} scale={NO2_SCALE} />;
+  return <TableMonthHour table={table} scale={SCALES.OVER} />;
 }

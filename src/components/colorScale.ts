@@ -9,13 +9,15 @@ export const WHITE_STYLE: StyleColor = {
   color: BLACK_COLOR,
 };
 
-export const NO2_SCALE: ColorScale = [
-  ...range([0, 255, 0], [225, 225, 0], 20),
-  ...range([225, 225, 0], [255, 0, 0], 20),
-  ...range([255, 0, 0], [225, 0, 225], 20),
-  ...range([225, 0, 225], [64, 0, 64], 20),
-  ...range([64, 0, 64], [16, 0, 8], 150),
-];
+// https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health
+export const SCALES: Record<string, ColorScale> = {
+  "PM2.5": scaleBySteps(10),
+  PM10: scaleBySteps(20),
+  O3: scaleBySteps(100 / 3),
+  NO2: scaleBySteps(40),
+  SO2: scaleBySteps(20 / 2),
+  OVER: scaleBySteps(10),
+};
 
 export function pickStyle(scale: ColorScale, value: number | null) {
   if (value == null) return WHITE_STYLE;
@@ -40,4 +42,14 @@ function range(from: Color, to: Color, steps: number): StyleColor[] {
     result.push({ backgroundColor, color });
   }
   return result;
+}
+
+function scaleBySteps(max: number) {
+  return [
+    ...range([0, 255, 0], [225, 225, 0], max / 2),
+    ...range([225, 225, 0], [255, 0, 0], max / 2),
+    ...range([255, 0, 0], [225, 0, 225], max / 2),
+    ...range([225, 0, 225], [64, 0, 64], max / 2),
+    ...range([64, 0, 64], [16, 0, 8], 150),
+  ];
 }

@@ -3,7 +3,8 @@ import { createSelector } from "reselect";
 import { useTypedSelector } from "../store/hooks";
 import { getTable } from "../store/table/selectors";
 import { DerivedTable } from "../store/table/types";
-import { NO2_SCALE } from "./colorScale";
+import { getSources } from "../store/sources/selectors";
+import { SCALES } from "./colorScale";
 import { TableMonthHour } from "./TableMonthHour";
 
 export const getAverageTable = createSelector(
@@ -20,6 +21,8 @@ export const getAverageTable = createSelector(
 
 export function TableMonthHourAverage() {
   const table = useTypedSelector(getAverageTable);
+  const { contaminant } = useTypedSelector(getSources);
+  const scale = SCALES[contaminant];
 
-  return <TableMonthHour table={table} scale={NO2_SCALE} />;
+  return <TableMonthHour table={table} scale={scale} />;
 }

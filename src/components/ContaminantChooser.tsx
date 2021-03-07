@@ -7,12 +7,10 @@ import { useDispatch } from "react-redux";
 
 const contaminants = [
   //
-  "NO",
   "NO2",
-  "NOX",
   "O3",
+  "PM2.5",
   "PM10",
-  "H2S",
   "SO2",
 ];
 
@@ -30,7 +28,10 @@ export function ContaminantChooser() {
 
 function Contaminant({ name, current }: any) {
   const dispatch = useDispatch();
-  const onClick = useCallback(() => dispatch(contaminantChanged(name)), [name]);
+  const onClick = useCallback(() => dispatch(contaminantChanged(name)), [
+    dispatch,
+    name,
+  ]);
 
   return (
     <Button active={name === current} onClick={onClick}>
