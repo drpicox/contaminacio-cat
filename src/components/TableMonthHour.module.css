@@ -1,0 +1,32 @@
+
+.table {
+  --month-width: 32px;
+  --hour-height: 16px;
+  font-size: calc(var(--hour-height) / 2);
+  line-height: var(--hour-height);
+  border-collapse: collapse;
+
+  background: red;
+  width: calc(var(--month-width) * 13);
+  overflow: hidden;
+}
+
+.row {
+  display: table-row;
+  height: var(--hour-height);
+}
+
+.header {
+  background: gray;
+}
+
+.cell {
+  display: table-cell;
+  width: var(--month-width);
+  height: var(--hour-height);
+  overflow: hidden;
+  border: solid 1px rgb(0,0,0,0.5);
+
+  box-sizing: border-box;
+  text-align: center;
+}
