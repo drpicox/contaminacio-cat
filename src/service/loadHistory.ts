@@ -58,9 +58,10 @@ async function loadData(estacio: string, contaminant: string) {
   //   `data between '2010-01-01T00:00:00' and '2021-02-28T00:00:00'AND nom_estacio='${estacio}'AND CONTAMINANT='${contaminant}'`
   // )
 
-  const data = `data between '2010-01-01T00:00:00' and '2021-02-28T00:00:00'AND nom_estacio='${estacio}'AND CONTAMINANT='${contaminant}'`
-    .replace(/ /g, "%20")
-    .replace(/'/g, "%27");
+  const data =
+    `data between '2010-01-01T00:00:00' and '2021-08-10T00:00:00'AND nom_estacio='${estacio}'AND CONTAMINANT='${contaminant}'`
+      .replace(/ /g, "%20")
+      .replace(/'/g, "%27");
   const url = `https://analisi.transparenciacatalunya.cat/resource/tasf-thgu.csv?$limit=2853004&$offset=0&$where=${data}`;
 
   const request = await fetch(url);
