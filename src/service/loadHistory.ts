@@ -1,11 +1,13 @@
 import localforage from "localforage";
 import { StationHistory } from "../types";
 
+const TODAY = new Date().toISOString().slice(0, 13) + ":00:00";
+
 export async function loadHistory(
   estacio: string,
   contaminant: string = "NO2"
 ): Promise<StationHistory> {
-  const key = `estacio:${estacio}#contaminant:${contaminant}`;
+  const key = `estacio:${estacio}#contaminant:${contaminant}:${TODAY}`;
   let csv = (await localforage.getItem(key)) as string;
   if (!csv) {
     csv = await loadData(estacio, contaminant);
@@ -59,7 +61,7 @@ async function loadData(estacio: string, contaminant: string) {
   // )
 
   const data =
-    `data between '2010-01-01T00:00:00' and '2021-08-10T00:00:00'AND nom_estacio='${estacio}'AND CONTAMINANT='${contaminant}'`
+    `data between '2010-01-01T00:00:00' and '${TODAY}'AND nom_estacio='${estacio}'AND CONTAMINANT='${contaminant}'`
       .replace(/ /g, "%20")
       .replace(/'/g, "%27");
   const url = `https://analisi.transparenciacatalunya.cat/resource/tasf-thgu.csv?$limit=2853004&$offset=0&$where=${data}`;

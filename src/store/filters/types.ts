@@ -15,4 +15,13 @@ export interface YearToggledAction {
   value: number;
 }
 
-export type FilterActionTypes = WeekdayToggledAction | YearToggledAction;
+export const YEAR_SELECTED = "filters/YEAR_SELECTED";
+export interface YearSelectedAction {
+  type: typeof YEAR_SELECTED;
+  value: number;
+}
+
+export type FilterActionTypes =
+  | WeekdayToggledAction
+  | YearToggledAction
+  | YearSelectedAction;
