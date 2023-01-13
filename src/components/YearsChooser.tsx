@@ -49,7 +49,7 @@ export function YearsChooser() {
 function Year({ name, value, active }: any) {
   const dispatch = useDispatch();
   const onClick = useCallback(
-    (ev) => {
+    (ev: any) => {
       if (ev.shiftKey) dispatch(yearToggled(value));
       else dispatch(yearSelected(value));
     },

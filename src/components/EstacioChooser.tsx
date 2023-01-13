@@ -15,9 +15,7 @@ export function EstacioChooser() {
   return (
     <>
       <InputGroup className="mb-3">
-        <InputGroup.Prepend>
-          <InputGroup.Text>🔎</InputGroup.Text>
-        </InputGroup.Prepend>
+        <InputGroup.Text>🔎</InputGroup.Text>
         <FormControl
           placeholder="Nom d'estació"
           value={filter}
@@ -40,7 +38,10 @@ export function EstacioChooser() {
 
 function Estacio({ name, current }: any) {
   const dispatch = useDispatch();
-  const onClick = useCallback(() => dispatch(estacioChanged(name)), [name]);
+  const onClick = useCallback(
+    () => dispatch(estacioChanged(name)),
+    [name, dispatch]
+  );
 
   return (
     <ListGroup.Item action active={name === current} onClick={onClick}>
