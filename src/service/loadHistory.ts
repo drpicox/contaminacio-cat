@@ -7,14 +7,16 @@ export async function loadHistory(
   estacio: string,
   contaminant: string = "NO2"
 ): Promise<StationHistory> {
+  let cached = true;
   const key = `estacio:${estacio}#contaminant:${contaminant}:${TODAY}`;
   let csv = (await localforage.getItem(key)) as string;
   if (!csv) {
     csv = await loadData(estacio, contaminant);
     await localforage.setItem(key, csv);
+    cached = false;
   }
 
-  const result = parseCsv(csv) as StationHistory;
+  let result = parseCsv(csv) as StationHistory;
   result.forEach((x) => {
     const date = new Date(x.data);
     const day = date.getDay();
@@ -52,7 +54,9 @@ export async function loadHistory(
     x.h24 = toNumber(x.h24);
   });
 
-  return result.filter((x) => x.nom_estacio);
+  result = result.filter((x) => x.nom_estacio);
+  result.cached = cached;
+  return result;
 }
 
 async function loadData(estacio: string, contaminant: string) {

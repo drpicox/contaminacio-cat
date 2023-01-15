@@ -1,12 +1,11 @@
 .table {
-  --month-width: 32px;
+  --station-width: 32px;
   --hour-height: 16px;
   font-size: calc(var(--hour-height) / 2);
   line-height: var(--hour-height);
   border-collapse: collapse;
 
   background: red;
-  width: calc(var(--month-width) * 13);
   overflow: hidden;
 }
 
@@ -21,11 +20,27 @@
 
 .cell {
   display: table-cell;
-  width: var(--month-width);
+  width: var(--station-width);
   height: var(--hour-height);
   overflow: hidden;
   border: solid 1px rgb(0, 0, 0, 0.5);
 
   box-sizing: border-box;
   text-align: center;
+}
+
+.vertCell {
+  display: table-cell;
+  width: var(--station-width);
+  overflow: hidden;
+  border: solid 1px rgb(0, 0, 0, 0.5);
+
+  writing-mode: vertical-lr;
+  line-height: var(--station-width);
+  padding-bottom: 4px;
+  padding-top: 4px;
+
+  box-sizing: border-box;
+  text-align: right;
+  background: white;
 }

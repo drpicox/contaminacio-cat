@@ -8,8 +8,10 @@ import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
 import { Provider } from "react-redux";
 import { loadHistory } from "./store/history/actions";
+import { fetchCloseStations } from "./store/day/closeStations";
 
 store.dispatch(loadHistory());
+store.dispatch(fetchCloseStations());
 
 ReactDOM.render(
   <React.StrictMode>

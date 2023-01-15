@@ -13,7 +13,7 @@ export function TableMonthHourChooser() {
 
   return (
     <>
-      {estacio} <br />
+      <h5>{estacio}</h5>
       <ButtonGroup className="mb-2 mt-1">
         <Button
           active={table === "Average"}

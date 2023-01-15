@@ -72,4 +72,4 @@ export interface StationPoint {
   h24: number | null;
 }
 
-export type StationHistory = StationPoint[];
+export type StationHistory = StationPoint[] & { cached?: boolean };
