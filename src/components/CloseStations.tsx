@@ -10,9 +10,9 @@ import {
 } from "../store/day/closeStations";
 import {
   selectCurrentDay,
-  selectDayAfter,
-  selectDayBefore,
-  selectToday,
+  goDayAfter,
+  goDayBefore,
+  goYesterday,
 } from "../store/day/daySelection";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
@@ -28,13 +28,13 @@ export function CloseStations() {
     <div>
       <h5>CloseStations</h5>
       <div>
-        <Button size="sm" onClick={() => dispatch(selectDayBefore())}>
+        <Button size="sm" onClick={() => dispatch(goDayBefore())}>
           -
         </Button>{" "}
-        <Button size="sm" onClick={() => dispatch(selectToday())}>
-          Today
+        <Button size="sm" onClick={() => dispatch(goYesterday())}>
+          Ahir
         </Button>{" "}
-        <Button size="sm" onClick={() => dispatch(selectDayAfter())}>
+        <Button size="sm" onClick={() => dispatch(goDayAfter())}>
           +
         </Button>{" "}
         Day: {day}, {weekDay} (NO2)

@@ -9,25 +9,28 @@ export function selectCurrentDay(state: any) {
   return state.daySelection;
 }
 
+const YESTERDAY: Date = new Date();
+YESTERDAY.setDate(YESTERDAY.getDate() - 1);
+
 const daySelectionSlice = createSlice({
   name: "daySelection",
-  initialState: textDate(new Date()),
+  initialState: textDate(YESTERDAY),
   reducers: {
-    selectDayBefore: (state) => {
+    goDayBefore: (state) => {
       const date = new Date(state);
       date.setDate(date.getDate() - 1);
       return textDate(date);
     },
-    selectDayAfter: (state) => {
+    goDayAfter: (state) => {
       const date = new Date(state);
       date.setDate(date.getDate() + 1);
       return textDate(date);
     },
-    selectToday: () => textDate(new Date()),
+    goYesterday: () => textDate(YESTERDAY),
   },
 });
 
-export const { selectDayBefore, selectDayAfter, selectToday } =
+export const { goDayBefore, goDayAfter, goYesterday } =
   daySelectionSlice.actions;
 
 export default daySelectionSlice.reducer;

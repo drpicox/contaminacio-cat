@@ -1,7 +1,7 @@
 import localforage from "localforage";
 import { StationHistory } from "../types";
 
-const TODAY = new Date().toISOString().slice(0, 13) + ":00:00";
+const TODAY = new Date().toISOString().slice(0, 11) + "11:00:00";
 
 export async function loadHistory(
   estacio: string,
