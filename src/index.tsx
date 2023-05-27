@@ -11,7 +11,7 @@ import { loadHistory } from "./store/history/actions";
 import { fetchCloseStations } from "./store/day/closeStations";
 
 store.dispatch(loadHistory());
-store.dispatch(fetchCloseStations());
+// store.dispatch(fetchCloseStations());
 
 ReactDOM.render(
   <React.StrictMode>

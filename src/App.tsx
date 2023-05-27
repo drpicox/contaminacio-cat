@@ -6,16 +6,12 @@ import { ContaminantChooser } from "./components/ContaminantChooser";
 import { EstacioChooser } from "./components/EstacioChooser";
 import { WeekdaysChooser } from "./components/WeekdaysChooser";
 import { YearsChooser } from "./components/YearsChooser";
-import { CloseStations } from "./components/CloseStations";
 
 function App() {
   return (
     <Layout>
       <br />
       <Container>
-        <Row>
-          <CloseStations />
-        </Row>
         <Row>
           <Col sm md lg xl>
             <TableMonthHourChooser />
